@@ -205,7 +205,10 @@ function extractEmails(str) {
  *
  */
 function getRectangleString(width, height) {
-    throw new Error('Not implemented');
+    let first = "┌"+"─".repeat(width-2)+"┐\n";
+    let middle = "│"+" ".repeat(width-2)+"│\n";
+    let last = "└"+"─".repeat(width-2)+"┘\n";
+    return first+middle.repeat(height-2)+last;    
 }
 
 
@@ -225,8 +228,12 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    throw new Error('Not implemented');
-}
+    let input     = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let output    = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+    let index     = x => input.indexOf(x);
+    let translate = x => index(x) > -1 ? output[index(x)] : x;
+    return str.split('').map(translate).join('');
+  }
 
 /**
  * Returns true if the value is string; otherwise false.
@@ -276,7 +283,40 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    throw new Error('Not implemented');
+    let answer = 0;
+    let start = value.slice(0,value.length-1);
+    switch (value[value.length-1].charCodeAt()) {
+        case 9827:
+            answer +=0;
+            break;
+        case 9830:
+            answer +=13;
+            break;
+        case 9829:
+            answer +=26;
+            break;
+        case 9824:
+            answer +=39;
+            break;
+      }
+    switch (value[0]) {
+        case "A":
+            answer +=0;
+            break;
+        case "J":
+            answer +=10;
+            break;
+        case "Q":
+            answer +=11;
+            break;
+        case "K":
+            answer +=12;
+            break;
+        default:
+            answer +=(parseInt(start)-1);
+            break;
+      }
+    return answer;
 }
 
 

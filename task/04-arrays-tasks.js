@@ -38,9 +38,7 @@ function findElement(arr, value) {
  *    5 => [ 1, 3, 5, 7, 9 ]
  */
 function generateOdds(len) {
-   throw new Error('Not implemented');
-   let arr = [];
-   return arr;
+   return new Array(len).fill(0).map((_, i) => 2*i+1);
 }
 
 
@@ -104,9 +102,7 @@ function getArrayOfStrings(arr) {
  *    [ false, 0, NaN, '', undefined ]   => [ ]
  */
 function removeFalsyValues(arr) {
-   throw new Error('Not implemented');
-   let answer = arr.filter(el => el != 0);
-   answer.filter(el => el.isNaN() != true);
+   let answer = arr.filter(el => !!el == true);
    return answer;
 }
 
@@ -382,7 +378,7 @@ function getFalsyValuesCount(arr) {
  *    [ true, 0, 1, 'true' ], true => 1
  */
 function findAllOccurences(arr, item) {
-   throw new Error('Not implemented');
+   return arr.filter(el => el === item).length
 }
 
 /**
