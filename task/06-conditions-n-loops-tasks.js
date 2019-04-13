@@ -57,7 +57,13 @@ function getFizzBuzz(num) {
  *   10 => 3628800
  */
 function getFactorial(n) {
-    throw new Error('Not implemented');
+    let count = n;
+    let answer = 1;
+    while (count > 1) {
+        answer *= count;
+        count--
+    }
+    return answer
 }
 
 
@@ -74,7 +80,11 @@ function getFactorial(n) {
  *   -1,1  =>  0  ( = -1 + 0 + 1 )
  */
 function getSumBetweenNumbers(n1, n2) {
-    throw new Error('Not implemented');
+    let answer = 0;
+    for (let i = n1; i <= n2; i++) {
+        answer +=i;
+    }
+    return answer;
 }
 
 
@@ -203,7 +213,21 @@ function findFirstSingleChar(str) {
  *
  */
 function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
-    throw new Error('Not implemented');
+    let answer = "";
+    if (isStartIncluded) {
+        answer +="[";
+    }
+    else {
+        answer +="(";
+    }
+    answer += (a>b) ? `${b}, ${a}`: `${a}, ${b}`;
+    if (isEndIncluded) {
+        answer +="]";
+    }
+    else {
+        answer +=")";
+    }
+    return answer;
 }
 
 
@@ -237,7 +261,8 @@ function reverseString(str) {
  *   34143 => 34143
  */
 function reverseInteger(num) {
-    throw new Error('Not implemented');
+    let arr = num.toString().split("").reverse();
+    return parseInt(arr.join(""));
 }
 
 
