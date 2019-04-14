@@ -207,7 +207,7 @@ function getTail(arr, n) {
  *    +'30,31,32,33,34'
  */
 function toCsvText(arr) {
-   throw new Error('Not implemented');
+   return (arr.map(el => el.join(",")).join("\n"))
 }
 
 /**
@@ -314,7 +314,7 @@ function propagateItemsByPositionIndex(arr) {
  *   [ 10, 10, 10, 10 ] => [ 10, 10, 10 ]
  */
 function get3TopItems(arr) {
-   throw new Error('Not implemented');
+   return arr.sort((a,b) => a - b).reverse().slice(0,3);
 }
  
  
@@ -354,7 +354,35 @@ function getPositivesCount(arr) {
  *   [ 'one','one','one','zero' ]     => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-   throw new Error('Not implemented');
+   let change = function (el) {
+      switch (el) {
+         case "zero": return 0
+         case "one": return 1;
+         case "two": return 2;
+         case "three": return 3;
+         case "four": return 4;
+         case "five": return 5;
+         case "six": return 6;
+         case "seven": return 7;
+         case "eight": return 8;
+         case "nine": return 9;  
+      }
+   }
+   let change2 = function (el) {
+      switch (el) {
+         case 0 : return "zero"
+         case 1 : return "one";
+         case 2 : return "two";
+         case 3 : return "three";
+         case 4 : return "four";
+         case 5 : return "five";
+         case 6 : return "six";
+         case 7 : return "seven";
+         case 8 : return "eight";
+         case 9 : return "nine";  
+      }
+   }
+   return arr.map(change).sort().map(change2);
 }
 
 /** 
@@ -506,7 +534,7 @@ function getIdentityMatrix(n) {
  *     3, 3   => [ 3 ]
  */
 function getIntervalArray(start, end) {
-   throw new Error('Not implemented');
+   return new Array(end - start + 1).fill(0).map((_, i) => i).map((el) => el+start);
 }
 
 /**
@@ -611,7 +639,12 @@ function getElementByIndexes(arr, indexes) {
  * 
  */
 function swapHeadAndTail(arr) {
-    throw new Error('Not implemented');
+   let headEnd = (arr.length%2 == 0) ? Math.floor(arr.length/2) : Math.floor(arr.length/2);
+   let tailStart = (arr.length%2 == 0) ? Math.floor(arr.length/2) : Math.floor(arr.length/2) + 1;
+   let head = arr.slice(0,headEnd);
+   let tail = arr.slice(tailStart,arr.length);
+   let middle = (arr.length%2 == 0) ? [] : arr.slice(headEnd,tailStart);
+   return tail.concat(middle.concat(head));
 }
 
 
