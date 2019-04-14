@@ -244,7 +244,8 @@ function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
  * 'noon' => 'noon'
  */
 function reverseString(str) {
-    throw new Error('Not implemented');
+    let arr = str.split("").reverse();
+    return arr.join("");
 }
 
 
@@ -306,7 +307,21 @@ function isCreditCardNumber(ccn) {
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
 function getDigitalRoot(num) {
-    throw new Error('Not implemented');
+    function oneDeepRoot(a) {
+        let arr = [];
+        let number = a;
+        while (number > 9){
+          arr.push(number % 10)
+          number = Math.floor(number/10);
+        }
+        arr.push(number);
+        number = (arr.reduce((sum,elem) => sum + elem));
+        return number;
+      }
+      while (num > 9) {
+        num = oneDeepRoot(num)
+      }
+      return num;
 }
 
 
@@ -332,7 +347,24 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-    throw new Error('Not implemented');
+    let bracketsConfig = [['[', ']'], ['(', ')'], ['{', '}'], ['<', '>']];
+    let testStr = [];
+    for (let i = 0; i < str.length; i++) {
+        testStr.push(str[i])
+    }
+    for (let i = 0; i < bracketsConfig.length; i++) {
+        let count = testStr.length;
+        for (let j = 0; j < testStr.length; j++) {
+            if (testStr[j] == bracketsConfig[i][0] && testStr[j+1] == bracketsConfig[i][1]) {
+                testStr.splice(j,2);
+                j = -1;
+            }
+        }
+        if (testStr.length < count) {
+            i = -1;
+        }
+    }
+    return !testStr.length;
 }
 
 
